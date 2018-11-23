@@ -1,0 +1,71 @@
+{{ header }}
+
+<div class="profile">
+    <div class="container">
+        <!-- Banner -->
+        <div class="profile-banner">
+            <div class="profile-info">
+                <div class="profile-photo">
+                    <img src="image/catalog/production/profile/profile-photo.png" alt="profile-photo">
+                </div>
+                <div class="profile-text">
+                    <div class="profile-title">{{ heading_title }}</div>
+                    {% if customer %}
+                    <div class="profile-name">{{ customer }}</div>
+                    {% endif %}
+                    {% if logged %}
+                    <a href="{{ logout }}" class="profile-exit">Выход</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {{ column_left }}
+            <!-- content -->
+            <div class="col-xl-9">
+                <div class="right-menu">
+
+      {% if orders %}
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <td class="text-right">{{ column_order_id }}</td>
+              <td class="text-left">{{ column_customer }}</td>
+              <td class="text-right">{{ column_product }}</td>
+              <td class="text-left">{{ column_status }}</td>
+              <td class="text-right">{{ column_total }}</td>
+              <td class="text-left">{{ column_date_added }}</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+           {% for order in orders %}
+            <tr>
+              <td class="text-right">#{{ order.order_id }}</td>
+              <td class="text-left">{{ order.name }}</td>
+              <td class="text-right">{{ order.products }}</td>
+              <td class="text-left">{{ order.status }}</td>
+              <td class="text-right">{{ order.total }}</td>
+              <td class="text-left">{{ order.date_added }}</td>
+              <td class="text-right"><a href="{{ order.view }}" data-toggle="tooltip" title="{{ button_view }}" class="btn btn-info"><i class="fa fa-eye"></i></a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 text-left">{{ pagination }}</div>
+        <div class="col-sm-6 text-right">{{ results }}</div>
+      </div>
+      {% else %}
+      <p>История заказов пуста!</p>
+      {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ content_bottom }}
+{{ footer }}

@@ -1,0 +1,35 @@
+/*.basket_wrapp {
+    position:fixed;
+    -webkit-transition: all .3s ease 0s;
+    -moz-transition: all .3s ease 0s;
+    -ms-transition: all .3s ease 0s;
+    -o-transition: all .3s ease 0s;
+    transition:all 0.4s ease-in-out 0s;
+    width:100%;
+    left:0;
+    bottom:-100%;
+    z-index:100;
+}
+
+.basket_strip {
+    background:#28120e;
+    border-top:14px solid #d09a42;
+    text-align:center;
+    padding:13px 0 13px;
+}
+
+.basket_strip p {
+    font-size:17px;
+    color:#fff;
+    display:inline-block;
+}
+
+.basket_strip a {
+    width:202px;
+    height:42px;
+    font-size:20px;
+    line-height:40px;
+    color:#ddd02a;
+    text-align:center;
+    display:inline-block;
+}*/

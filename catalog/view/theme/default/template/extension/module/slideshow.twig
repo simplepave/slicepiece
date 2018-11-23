@@ -1,0 +1,20 @@
+<!-- Banner -->
+<div class="banner">
+  <div class="fotorama"
+     data-autoplay="10000"
+     data-width="100%"
+     data-fit="cover"
+     data-loop="true"
+     data-transition="crossfade">
+
+    {% for banner in banners %}
+    <div data-img="{{ banner.image }}">
+      <div class="banner-title">
+        <h1>{{ banner.title }}</h1>
+        <a href="{{ banner.link }}">Перейти в каталог</a>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>

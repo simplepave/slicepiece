@@ -1,0 +1,128 @@
+{{ header }}
+{{ content_top }}
+
+<!-- Хлебные крошки -->
+<div class="bread-crumbs">
+  <div class="container">
+      <ul>
+{% for breadcrumb in breadcrumbs %}
+    {% if loop.last %}
+        <li class="active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% else %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endif %}
+{% endfor %}
+      </ul>
+  </div>
+</div>
+
+{% if category_id == 59 %}
+{{ catalog }}
+{% else %}
+<div class="phones">
+    <div class="container">
+        <div class="phones-title">{{ heading_title }}</div>
+        {% if thumb %}
+        <div class="phones-banner">
+            <img src="{{ thumb }}" alt="{{ heading_title }}">
+        </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-lg-3">
+                {{ filter }}
+            </div>
+
+            <div class="col-lg-9">
+            {% if products %}
+                <div class="sorting-panel">
+                    <div class="sorting-left">
+                        <select id="input-sort" onchange="location = this.value;">
+                            {% for sorts in sorts %}
+                            {% if sorts.value == '%s-%s'|format(sort, order) %}
+                            <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+                            {% else %}
+                            <option value="{{ sorts.href }}">{{ sorts.text }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="sorting-right">
+                        <p>Вид:</p>
+                        <div class="sorting-view grid-view active"></div>
+                        <div class="sorting-view list-view"></div>
+                    </div>
+                </div>
+
+                <div class="products">
+                    <div class="product-list">
+                    {% for product in products %}
+                        <div class="popular-goods_product">
+                            <a href="{{ product.href }}" class="product-img">
+                                {% if product.hitpro %}
+                                <div class="hit">хит</div>
+                                {% endif %}
+                                <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}">
+                                <div onclick="event.preventDefault(); wishlist.add('{{ product.product_id }}');" class="favorites"></div>
+                            </a>
+                            <div class="product-information">
+                                <a href="{{ product.href }}" class="product-title">{{ product.name }}</a>
+                                <div class="product-specifications">
+                                {% if product.attribute %}
+                                    <table class="table">
+                                        <tbody>
+                                        {% for attribute_group in product.attribute %}
+                                            {% for attribute in attribute_group.attribute %}
+                                            <tr>
+                                                <td class="text-left product-descr">{{ attribute.name }}</td>
+                                                <td class="text-left product-inf">{{ attribute.text }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% else %}
+                                    {{ product.description }}
+                                {% endif %}
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                {% if product.price %}
+                                    {% if not product.special %}
+                                        <span>{{ product.price }}</span>
+                                    {% else %}
+                                        <span class="price-new">{{ product.special }}</span>
+                                        <span class="price-old">{{ product.price }}</span>
+                                    {% endif %}
+                                    {% if product.tax %}
+                                        <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+                                    {% endif %}
+                                {% endif %}
+                                <button type="button" onclick="event.preventDefault(); cart.add('{{ product.product_id }}', '{{ product.minimum }}');">{{ button_cart_in }}</button>
+                                <a data-product="{{ product.product_id }}" class="buy popup button_call" href="#form-fastBuy">Купить в один клик</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    {{ pagination }}
+                </div>
+            {% else %}
+                {{ text_empty }}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if description %}
+<!-- Main-text -->
+<div class="main-text">
+    <div class="container">{{ description }}</div>
+</div>
+{% endif %}
+
+{{ subscription }}
+
+{% endif %}
+{{ content_bottom }}
+{{ footer }}

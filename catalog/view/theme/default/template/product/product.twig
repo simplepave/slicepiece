@@ -1,0 +1,262 @@
+{{ header }}
+{{ content_top }}
+
+<!-- Хлебные крошки -->
+<div class="bread-crumbs">
+  <div class="container">
+      <ul>
+{% for breadcrumb in breadcrumbs %}
+    {% if loop.last %}
+        <li class="active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% else %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endif %}
+{% endfor %}
+      </ul>
+  </div>
+</div>
+
+<div class="card-product">
+    <div class="container">
+        <div class="card-product-title">{{ heading_title }}</div>
+        <div class="row">
+            {% if thumb or images %}
+            <div class="col-xl-7">
+                <div class="slider-for">
+                {% if popup %}
+                    <div><img src="{{ popup }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></div>
+                {% endif %}
+                {% if images %}
+                    {% for image in images %}
+                    <div><img src="{{ image.popup }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+                <div class="slider-nav">
+                {% if thumb %}
+                    <div class="item"><img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></div>
+                {% endif %}
+                {% if images %}
+                    {% for image in images %}
+                    <div class="item"><img src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            <div id="product" class="col-xl-4 offset-1">
+                {% if price %}
+                    {% if not special %}
+                        <div class="product-price">{{ price }}</div>
+                    {% else %}
+                        <div class="product-price"><span style="text-decoration: line-through;">{{ price }}</span></div>
+                        <div class="product-price">{{ special }}</div>
+                    {% endif %}
+
+                    {% if tax %}
+                        <div>{{ text_tax }} {{ tax }}</div>
+                    {% endif %}
+
+                    {% if discounts %}
+                        {% for discount in discounts %}
+                            <div>{{ discount.quantity }}{{ text_discount }}{{ discount.price }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+
+                <div class="row">
+                    <input type="hidden" name="product_id" value="{{ product_id }}" />
+                    <div class="col-6">
+                        <button type="button" id="button-cart" class="add-to-cart">{{ button_cart_in }}</button>
+                    </div>
+                    <div class="col-6">
+                        <a data-product="{{ product_id }}" class="popup button buy-click" href="#form-fastBuy">Купить в 1 клик</a>
+                    </div>
+                </div>
+
+                {% if options %}
+                {% for option in options %}
+                {% if option.type == 'radio' %}
+                <p class="color-selection-title">{{ option.name }}</p>
+                <div class="row">
+                    {% for option_value in option.product_option_value %}
+                    <div class="col-xl-6">
+                        <label class="color-product">
+                            <input type="radio" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" class="radio" />
+                            {% if option_value.image %}
+                            <div class="colorCircle">
+                                <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" />
+                            </div>
+                            {% endif %}
+                            <p>{{ option_value.name }}</p>
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                {% if attribute_groups %}
+                <p class="specifications-title">Характеристики</p>
+                <div class="specifications">
+                    <div id="accordion">
+                    {% for attribute_group in attribute_groups %}
+                        <div class="card">
+                            <div class="card-header" id="heading-{{ attribute_group.attribute_group_id }}">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#attribute-{{ attribute_group.attribute_group_id }}" aria-expanded="true" aria-controls="attribute-{{ attribute_group.attribute_group_id }}">{{ attribute_group.name }}</button>
+                            </div>
+
+                            <div id="attribute-{{ attribute_group.attribute_group_id }}" class="collapse show" aria-labelledby="heading-{{ attribute_group.attribute_group_id }}" data-parent="#accordion">
+                                <div class="card-body">
+                                    <table class="table">
+                                        <tbody>
+                                        {% for attribute in attribute_group.attribute %}
+                                            <tr>
+                                                <td class="text-left product-descr">{{ attribute.name }}</td>
+                                                <td class="text-left product-inf">{{ attribute.text }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if reladds %}
+<div class="covers">
+    <div class="container">
+        <div class="covers_title">Чехлы для "{{ heading_title }}"</div>
+        <div class="covers-products">
+            <div class="row" style="width: 100%">
+
+                {% for product in reladds %}
+                <div class="col-xl-3 col-md-6 col-12">
+                    <a href="{{ product.href }}" class="often-watch_product">
+                        <div class="product-img">
+                            {% if product.hitpro %}
+                            <div class="hit">хит</div>
+                            {% endif %}
+                            <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}">
+                            <div onclick="event.preventDefault(); wishlist.add('{{ product.product_id }}');" class="favorites"></div>
+                        </div>
+
+                        <div class="product-info">
+                            <p>{{ product.name }}</p>
+                            {% if product.price %}
+                                {% if not product.special %}
+                                    <span>{{ product.price }}</span>
+                                {% else %}
+                                    <span class="price-new">{{ product.special }}</span>
+                                    <span class="price-old">{{ product.price }}</span>
+                                {% endif %}
+                                {% if product.tax %}
+                                    <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+                                {% endif %}
+                            {% endif %}
+                            <button type="button" onclick="event.preventDefault(); cart.add('{{ product.product_id }}', '{{ product.minimum }}');">{{ button_cart_in }}</button>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if products %}
+<div class="often-watch">
+    <div class="container">
+        <div class="often-watch_title">{{ text_related }}</div>
+        <div class="often-watch-products">
+            <div class="row" style="width: 100%">
+
+                {% for product in products %}
+                <div class="col-xl-3 col-md-6 col-12">
+                    <a href="{{ product.href }}" class="often-watch_product">
+                        <div class="product-img">
+                            {% if product.hitpro %}
+                            <div class="hit">хит</div>
+                            {% endif %}
+                            <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}">
+                            <div onclick="event.preventDefault(); wishlist.add('{{ product.product_id }}');" class="favorites"></div>
+                        </div>
+
+                        <div class="product-info">
+                            <p>{{ product.name }}</p>
+                            {% if product.price %}
+                                {% if not product.special %}
+                                    <span>{{ product.price }}</span>
+                                {% else %}
+                                    <span class="price-new">{{ product.special }}</span>
+                                    <span class="price-old">{{ product.price }}</span>
+                                {% endif %}
+                                {% if product.tax %}
+                                    <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+                                {% endif %}
+                            {% endif %}
+                            <button type="button" onclick="event.preventDefault(); cart.add('{{ product.product_id }}', '{{ product.minimum }}');">{{ button_cart_in }}</button>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if description %}
+<div class="main-textImg">
+    <div class="container">
+        <div class="row">
+            {{ description }}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<script type="text/javascript"><!--
+$('#button-cart').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/cart/add',
+		type: 'post',
+		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-cart').button('loading');
+		},
+		complete: function() {
+			$('#button-cart').button('reset');
+		},
+		success: function(json) {
+			if (json['success']) {
+
+                setTimeout(function () {
+                    $('.header-in-cart').html(json['count']).show();
+                    $('#cart-total').html(json['total']);
+                    $('.basket_wrapp').css({'bottom' : '0'});
+                }, 100);
+
+			}
+		},
+        error: function(xhr, ajaxOptions, thrownError) {
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+	});
+});
+//--></script>
+
+{{ subscription }}
+{{ content_bottom }}
+{{ footer }}

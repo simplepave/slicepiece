@@ -1,0 +1,29 @@
+{{ header }}
+{{ content_top }}
+
+<!-- Хлебные крошки -->
+<div class="bread-crumbs">
+  <div class="container">
+      <ul>
+{% for breadcrumb in breadcrumbs %}
+    {% if loop.last %}
+        <li class="active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% else %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endif %}
+{% endfor %}
+      </ul>
+  </div>
+</div>
+
+<!-- О нас -->
+<div class="about">
+  <div class="container">
+    <div class="about_title">{{ heading_title }}</div>
+    {{ description }}
+  </div>
+</div>
+
+{{ content_bottom }}
+{{ subscription }}
+{{ footer }}

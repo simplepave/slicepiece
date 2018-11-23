@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'SolomonSansBlack';
+    src: url('SolomonSansBlack.otf');
+    src: url('SolomonSansBlack.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SolomonSansBold';
+    src: url('SolomonSansBold.otf');
+    src: url('SolomonSansBold.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SolomonSansBook';
+    src: url('SolomonSansBook.otf');
+    src: url('SolomonSansBook.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SolomonSansLight';
+    src: url('SolomonSansLight.otf');
+    src: url('SolomonSansLight.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SolomonSansNormal';
+    src: url('SolomonSansNormal.otf');
+    src: url('SolomonSansNormal.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SolomonSansNormalItalic';
+    src: url('SolomonSansNormalItalic.otf');
+    src: url('SolomonSansNormalItalic.otf') format('truetype');
+}

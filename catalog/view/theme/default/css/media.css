@@ -1,0 +1,147 @@
+@media (min-width: 280px) and (max-width: 1200px) {
+	.header_phone {
+		order: -1;
+		margin-right: 20px;
+	}
+	.header_cart {
+		margin-left: 0;
+	}
+	.header-navbar {
+		display: none;
+	}
+	.navbar {
+	display: flex;
+}
+.news .novelty-title,
+.news .stock-title,
+.news .discounts-title {
+	transform: translate(-100px, -50px);
+	text-align: center;
+	display: block;
+}
+.subscription-title {
+	text-align: center;
+}
+
+.subscription-subtitle {
+	text-align: center;
+	margin-bottom: 25px;
+	max-width: 100%;
+}
+.sorting-right {
+	display: none;
+}
+.sorting-panel {
+	padding: 20px 50px;
+}
+.sorting-left {
+	width: 100%;
+	margin: 0px auto;
+}
+
+}
+
+@media (min-width: 280px) and (max-width: 992px) {
+	.header-navbar {
+		display: none;
+	}
+	.navbar {
+	display: flex;
+}
+	.footer .social {
+		display: none;
+	}
+.banner .fotorama__nav-wrap {
+	display: none;
+}
+
+.banner-title {
+	margin-top: 100px;
+}
+}
+
+@media (min-width: 280px) and (max-width: 768px) {
+	.header > .container {
+	flex-direction: column;
+	padding-top: 45px;
+	}
+	.header-navbar,
+	.navbar {
+		display: none;
+	}
+	.header > .container > .header-panel .header_search,
+	.header > .container > .header-panel .header_profile,
+	.header > .container > .header-panel .header_cart {
+		display: none;
+	}
+	.adaptive-menu {
+		display: flex;
+	}
+	.header_phone {
+		margin: 20px 0;
+		align-items: center;
+	}
+
+	.footer .footer-navbar,
+	.footer-nav-catalog {
+		display: none;
+	}
+.banner h1 {
+	font-size: 24px;
+	width: 400px;
+}
+.banner a {
+	font-size: 14px;
+}
+.banner-title {
+	margin-top: 60px;
+}
+.sorting-panel {
+	margin-top: 25px;
+	padding: 20px 0;
+}
+.sorting-left {
+	height: 100%;
+	margin-left: 0px;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.sorting-left > a,
+.sorting-right > p {
+	font-size: 14px;
+}
+.product-list {
+ justify-content: center;
+}
+}
+
+@media (min-width: 280px) and (max-width: 576px) {
+.footer > .container {
+	flex-direction: column;
+	align-items: center;
+}
+.footer .contacts {
+	margin-top: 20px;
+	align-items: center;
+}
+.footer .social {
+	display: block;
+	margin-top: 20px;
+}
+.catalog-phones_img,
+.catalog-accessories_img {
+	max-height: 200px;
+}
+.banner .fotorama__nav-wrap {
+	display: none;
+}
+.form-checkout {
+	padding: 50px 15px 50px;
+}
+.img-product {
+	display: none;
+}
+.cart tbody > tr > td {
+	padding: 5px;
+}
+}

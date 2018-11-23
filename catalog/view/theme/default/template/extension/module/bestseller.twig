@@ -1,0 +1,39 @@
+{% if products %}
+<!-- Популярные товары  -->
+<div class="popular-goods">
+    <div class="container">
+
+        <div class="popular-goods_title">{{ heading_title }}</div>
+
+        <div class="popular-goods-slider owl-carousel">
+{% for product in products %}
+        <a href="{{ product.href }}" class="popular-goods_product">
+            <div class="product-img">
+            {% if product.hitpro %}
+              <div class="hit">хит</div>
+            {% endif %}
+              <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}">
+              <div onclick="event.preventDefault(); wishlist.add('{{ product.product_id }}');" class="favorites"></div>
+            </div>
+            <div class="product-info">
+              <p>{{ product.name }}</p>
+                {% if product.price %}
+                    {% if not product.special %}
+                        <span>{{ product.price }}</span>
+                    {% else %}
+                        <span class="price-new">{{ product.special }}</span>
+                        <span class="price-old">{{ product.price }}</span>
+                    {% endif %}
+                    {% if product.tax %}
+                        <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+                    {% endif %}
+                {% endif %}
+              <button type="button" onclick="event.preventDefault(); cart.add('{{ product.product_id }}', '{{ product.minimum }}');">{{ button_cart_in }}</button>
+            </div>
+        </a>
+{% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endif %}

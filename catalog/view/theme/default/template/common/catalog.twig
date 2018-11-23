@@ -1,0 +1,20 @@
+<section class="catalog">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-12">
+        <div class="catalog-title">{{ heading_title }}</div>
+      </div>
+{% for category in categories %}
+      <div class="col-lg-6">
+        <a class="catalog-phones" href="{{ category.href }}">
+          <div class="catalog-phones_img">
+            <img src="{{ category.image }}" alt="{{ category.name }}" width="100%">
+          </div>
+          <p>{{ category.name }}</p>
+        </a>
+      </div>
+{% endfor %}
+    </div>
+  </div>
+</section>

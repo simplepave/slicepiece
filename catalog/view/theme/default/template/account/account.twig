@@ -1,0 +1,100 @@
+{{ header }}
+
+<div class="profile">
+    <div class="container">
+        <!-- Banner -->
+        <div class="profile-banner">
+            <div class="profile-info">
+                <div class="profile-photo">
+                    <img src="image/catalog/production/profile/profile-photo.png" alt="profile-photo">
+                </div>
+                <div class="profile-text">
+                    <div class="profile-title">{{ heading_title }}</div>
+                    {% if customer %}
+                    <div class="profile-name">{{ customer }}</div>
+                    {% endif %}
+                    {% if logged %}
+                    <a href="{{ logout }}" class="profile-exit">Выход</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {{ column_left }}
+            <!-- content -->
+            <div class="col-xl-9">
+                <div class="right-menu">
+                    {% if success %}
+                    <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
+                    {% endif %}
+    <form action="{{ action }}" method="post">
+        <div class="rm-title">изменить контактную информацию</div>
+
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <label for="text">Ваше имя:</label>
+                <input name="firstname" value="{{ firstname }}" type="text" placeholder="Имя">
+                {% if error_firstname %}
+                <div class="text-danger">{{ error_firstname }}</div>
+                {% endif %}
+
+                <label for="tel">Ваш телефон:</label>
+                <input class="phone-mask" name="telephone" value="{{ telephone }}" type="tel" placeholder="Телефон">
+                {% if error_telephone %}
+                <div class="text-danger">{{ error_telephone }}</div>
+                {% endif %}
+            </div>
+            <div class="col-lg-6 col-12">
+                <label for="text">Ваша фамилия:</label>
+                <input name="lastname" value="{{ lastname }}" type="text" placeholder="Фамилия">
+                {% if error_lastname %}
+                <div class="text-danger">{{ error_lastname }}</div>
+                {% endif %}
+
+                <label for="email">Email:</label>
+                <input name="email" value="{{ email }}" type="email" placeholder="Email">
+                {% if error_email %}
+                <div class="text-danger">{{ error_email }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="right-menu-button">
+            <input type="hidden" name="action" value="edit">
+            <button type="submit" class="save">Сохранить</button>
+        </div>
+    </form>
+        <br><br>
+    <form action="{{ action }}" method="post">
+        <div class="rm-title">изменить пароль</div>
+
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <label for="password">Придумайте новый пароль:</label>
+                <input name="password" value="{{ password }}" type="password" placeholder="Новый пароль">
+            </div>
+            {% if error_password %}
+            <div class="text-danger">{{ error_password }}</div>
+            {% endif %}
+
+            <div class="col-lg-6 col-12">
+                <label for="confirmPassword">Повторите пароль:</label>
+                <input name="confirm" value="{{ confirm }}" type="password" placeholder="Повторить">
+            </div>
+            {% if error_confirm %}
+            <div class="text-danger">{{ error_confirm }}</div>
+            {% endif %}
+        </div>
+
+        <div class="right-menu-button">
+            <input type="hidden" name="action" value="edit_password">
+            <button type="submit" class="save">Сохранить</button>
+        </div>
+    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ content_bottom }}
+{{ footer }}

@@ -1,0 +1,73 @@
+{{ header }}
+{{ content_top }}
+
+<!-- Хлебные крошки -->
+<div class="bread-crumbs">
+  <div class="container">
+      <ul>
+{% for breadcrumb in breadcrumbs %}
+    {% if loop.last %}
+        <li class="active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% else %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endif %}
+{% endfor %}
+      </ul>
+  </div>
+</div>
+
+<!-- Акции -->
+<div class="stock">
+  <div class="container">
+    <div class="stock-title">{{ heading_title }}</div>
+
+    <div class="stock-img">
+      <img src="catalog/view/theme/default/img/stock-logo.jpg" alt="stock">
+    </div>
+
+{% if products %}
+    <div class="stock-items">
+      <div id="more-block" class="row">
+{% for product in products %}
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+          <a href="{{ product.href }}" class="popular-goods_product">
+            <div class="product-img">
+            {% if product.hitpro %}
+              <div class="hit">хит</div>
+            {% endif %}
+              <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}">
+              <div onclick="event.preventDefault(); wishlist.add('{{ product.product_id }}');" class="favorites"></div>
+            </div>
+            <div class="product-info">
+              <p>{{ product.name }}</p>
+                {% if product.price %}
+                    {% if not product.special %}
+                        <span>{{ product.price }}</span>
+                    {% else %}
+                        <span class="price-new">{{ product.special }}</span>
+                        <span class="price-old">{{ product.price }}</span>
+                    {% endif %}
+                    {% if product.tax %}
+                        <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+                    {% endif %}
+                {% endif %}
+              <button type="button" onclick="event.preventDefault(); cart.add('{{ product.product_id }}', '{{ product.minimum }}');">{{ button_cart_in }}</button>
+            </div>
+          </a>
+        </div>
+{% endfor %}
+      </div>
+    </div>
+    {% if more %}
+    <a id="more-button" class="stock-more" data-next="{{ more }}">Загрузить ещё</a>
+    {% endif %}
+{% else %}
+    {{ text_empty }}
+{% endif %}
+
+  </div>
+</div>
+
+{{ content_bottom }}
+{{ subscription }}
+{{ footer }}

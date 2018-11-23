@@ -1,0 +1,62 @@
+{{ header }}
+{{ content_top }}
+
+<!-- Хлебные крошки -->
+<div class="bread-crumbs">
+  <div class="container">
+      <ul>
+{% for breadcrumb in breadcrumbs %}
+    {% if loop.last %}
+        <li class="active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% else %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endif %}
+{% endfor %}
+      </ul>
+  </div>
+</div>
+
+<!-- Новости подробнее -->
+<div class="news-more">
+    <div class="container">
+        <div class="news-more-title">{{ heading_title }}</div>
+        <div class="row">
+            <div class="col-12">
+                <div class="news-item">
+                    {% if original %}
+                    <a href="{{ href }}" class="news-item_img">
+                        <img src="{{ original }}" alt="{{ heading_title }}">
+                    </a>
+                    {% endif %}
+                    <div class="news-item_title">{{ heading_title }}</div>
+                    {{ description }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Другие новости -->
+{% if articles %}
+<div class="other-news">
+    <div class="container">
+        <div class="news-title">{{ text_related }}</div>
+        <div class="other-news-slider owl-carousel">
+            {% for article in articles %}
+            <div class="news-item">
+                <a href="{{ article.href }}" class="news-item_img">
+                    <img src="{{ article.original }}" alt="{{ article.name }}">
+                </a>
+                <div class="news-item_title">{{ article.name }}</div>
+                <p>{{ article.preview }}...</p>
+                <a href="{{ article.href }}" class="read">Подробнее</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{{ content_bottom }}
+{{ subscription }}
+{{ footer }}

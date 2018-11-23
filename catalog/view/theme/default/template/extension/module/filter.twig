@@ -1,0 +1,87 @@
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapsePrice" aria-expanded="true" aria-controls="collapsePrice" type="button">Цена</button>
+        </div>
+        <div id="collapsePrice" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <input type="text" id="priceSlider" name="example_name" value="" />
+            </div>
+        </div>
+    </div>
+    {% for filter_group in filter_groups %}
+    <div class="card">
+        <div class="card-header" id="heading-{{ filter_group.filter_group_id }}">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse-{{ filter_group.filter_group_id }}" aria-expanded="false" aria-controls="collapse-{{ filter_group.filter_group_id }}" type="button">{{ filter_group.name }}</button>
+        </div>
+
+        <div id="collapse-{{ filter_group.filter_group_id }}" class="collapse show" aria-labelledby="heading-{{ filter_group.filter_group_id }}" data-parent="#accordion">
+            <div class="card-body">
+            {% for filter in filter_group.filter %}
+                <label>
+                    {% if filter.filter_id in filter_category %}
+                        <input type="checkbox" name="filter[]" value="{{ filter.filter_id }}" checked="checked" />
+                        {{ filter.name }}
+                    {% else %}
+                        <input type="checkbox" name="filter[]" value="{{ filter.filter_id }}" />
+                        {{ filter.name }}
+                    {% endif %}
+                </label>
+                <br>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="matched-goods">
+    <div class="matched-goods_title">Подобрано <span>{{ product_total }}</span> тов.</div>
+
+    <div class="matched-goods_buttons">
+        <button type="button" id="button-filter">Показать</button>
+        <button type="button" id="button-filter-reset">Сбросить фильтр</button>
+    </div>
+</div>
+
+<script type="text/javascript"><!--
+    $(function () {
+        let filterPrice = '{{ price.filter_price }}';
+
+        $("#priceSlider").ionRangeSlider({
+            hide_min_max: true,
+            keyboard: true,
+            min: {{ price.min }},
+            max: {{ price.max }},
+            from: {{ price.from }},
+            to: {{ price.to }},
+            min_interval: 10,
+            type: 'double',
+            step: 1,
+            prefix: '{{ price.symbol_left }}',
+            postfix: '{{ price.symbol_right }}',
+            grid: false,
+            onFinish: function(price){
+                filterPrice = '&p_min=' + price.from + '&p_max=' + price.to;
+            }
+        });
+
+        let slider = $("#priceSlider").data("ionRangeSlider");
+        slider.update({
+            from: {{ price.from }},
+            to: {{ price.to }}
+        });
+
+        $('#button-filter').on('click', function() {
+            filter = [];
+            $('input[name^=\'filter\']:checked').each(function(element) {
+                filter.push(this.value);
+            });
+            location = '{{ action }}' + filterPrice + '&filter=' + filter.join(',');
+        });
+
+        $('#button-filter-reset').on('click', function() {
+            location = '{{ action }}';
+        });
+    });
+//--></script>

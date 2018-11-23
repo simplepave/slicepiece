@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html dir="{{ direction }}" lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>{{ title }}</title>
+
+<base href="{{ base }}" />
+{% if description %}
+<meta name="description" content="{{ description }}" />
+{% endif %}
+{% if keywords %}
+<meta name="keywords" content="{{ keywords }}" />
+{% endif %}
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+<link href="catalog/view/theme/default/css/slick.css" rel="stylesheet">
+<link href="catalog/view/theme/default/css/slick-theme.css" rel="stylesheet">
+
+{% for style in styles %}
+<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+{% endfor %}
+
+<link href="catalog/view/theme/default/css/bootstrap.css" rel="stylesheet">
+<link href="catalog/view/theme/default/css/style.css" rel="stylesheet">
+<link href="catalog/view/theme/default/css/reset.css" rel="stylesheet">
+<link href="catalog/view/theme/default/css/media.css" rel="stylesheet">
+
+<link href="catalog/view/theme/default/css/fotorama.css" rel="stylesheet">
+<link href="catalog/view/theme/default/css/owl.carousel.min.css" rel="stylesheet">
+<link href="catalog/view/theme/default/css/owl.theme.default.min.css" rel="stylesheet">
+<link href="catalog/view/theme/default/css/magnific-popup.css" rel="stylesheet">
+<link href="catalog/view/theme/default/css/sp.css" rel="stylesheet">
+
+<script src="catalog/view/javascript/js/jquery-3.3.1.js" type="text/javascript"></script>
+
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+
+{% for link in links %}
+<link href="{{ link.href }}" rel="{{ link.rel }}" />
+{% endfor %}
+
+{% for analytic in analytics %}
+{{ analytic }}
+{% endfor %}
+</head>
+<body>
+
+<!-- Шапка -->
+<header class="header">
+
+  <!-- Mobile menu -->
+  <div class="adaptive-menu">
+    <a class="menu-btn">
+      <span></span>
+    </a>
+
+    <div class="header-panel">
+      <a class="header_search popup button_call" href="#form-search">
+        <img src="catalog/view/theme/default/img/header/search.png" alt="search">
+      </a>
+      {% if logged %}
+      <a class="header_profile" href="{{ account }}">
+        <img src="catalog/view/theme/default/img/header/profile.png" alt="profile">
+      </a>
+      {% else %}
+      <a class="header_profile popup button_call" href="#form-entrance">
+        <img src="catalog/view/theme/default/img/header/profile.png" alt="profile">
+      </a>
+      {% endif %}
+      <a class="header_cartt" href="cart.html">
+        <img src="catalog/view/theme/default/img/header/cart.png" alt="cart" class="cart-img">
+        <div class="header-in-cart number-goods" style="display: none;"></div>
+      </a>
+    </div>
+
+    <div class="open-menu">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ about }}">{{ text_about }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ special }}">{{ text_special }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ catalog }}">Каталог</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ newsblog }}">Новости</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ contact }}">{{ text_contact }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- header -->
+  <div class="container">
+    <div class="header-navbar">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ about }}">{{ text_about }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ special }}">{{ text_special }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ catalog }}">Каталог</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ newsblog }}">Новости</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ contact }}">{{ text_contact }}</a>
+        </li>
+      </ul>
+    </div>
+
+    {% if logo %}
+    <a class="header-logo" href="{{ home }}">
+      <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}">
+    </a>
+    {% else %}
+    <h1><a href="{{ home }}">{{ name }}</a></h1>
+    {% endif %}
+
+    <div class="header-panel">
+      <!-- search -->
+      <a class="header_search popup button_call" href="#form-search">
+        <img src="catalog/view/theme/default/img/header/search.png" alt="search">
+      </a>
+      <!-- profile -->
+      {% if logged %}
+      <a class="header_profile" href="{{ account }}">
+        <img src="catalog/view/theme/default/img/header/profile.png" alt="profile">
+      </a>
+      {% else %}
+      <a class="header_profile popup button_call" href="#form-entrance">
+        <img src="catalog/view/theme/default/img/header/profile.png" alt="profile">
+      </a>
+      {% endif %}
+      <!-- phone -->
+      <div class="header_phone">
+          <a class="tel" href="{{ href_tel }}">{{ telephone }}</a>
+          <a class="popup button_call" href="#form-call">Обратный звонок</a>
+      </div>
+      <!-- cart -->
+      <a href="{{ checkout_cart }}" class="header_cart">
+        <img src="catalog/view/theme/default/img/header/cart.png" alt="cart" class="cart-img">
+        <div class="header-in-cart number-goods" style="display: none;"></div>
+        <p>{{ text_shopping_cart }}</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Меню на 1200px  -->
+  <div class="navbar">
+    <div class="container">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ about }}">{{ text_about }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ special }}">{{ text_special }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ catalog }}">Каталог</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ newsblog }}">Новости</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ contact }}">{{ text_contact }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

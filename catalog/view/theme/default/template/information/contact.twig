@@ -1,0 +1,64 @@
+{{ header }}
+{{ content_top }}
+
+<!-- Хлебные крошки -->
+<div class="bread-crumbs">
+  <div class="container">
+      <ul>
+{% for breadcrumb in breadcrumbs %}
+    {% if loop.last %}
+        <li class="active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% else %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endif %}
+{% endfor %}
+      </ul>
+  </div>
+</div>
+
+<!-- Контакты -->
+<div class="contacts">
+  <div class="container">
+    <div class="contacts-title">{{ heading_title }}</div>
+    <div class="row no-gutters">
+    {% if geocode %}
+      <div class="col-xl-8 col-sm-12">
+        <iframe src="{{ geocode|raw }}" width="800" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+    {% endif %}
+      <div class="col-xl-4 col-sm-12">
+        <div class="contacts-info">
+
+          <div class="address">
+            {{ address }}
+          </div>
+
+          <div class="phone">
+            {{ text_telephone }}: {{ telephone }}
+          </div>
+        {% if open %}
+          <div class="work_schedule">
+            {{ text_open }}:
+            <span>{{ open }}</span>
+          </div>
+        {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if comment %}
+<!-- Main-text -->
+<div class="main-text">
+  <div class="container">
+    <div class="main-text_title">{{ text_comment }}</div>
+    <p>{{ comment }}</p>
+  </div>
+</div>
+{% endif %}
+
+{{ content_bottom }}
+{{ subscription }}
+{{ footer }}

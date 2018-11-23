@@ -1,0 +1,46 @@
+{{ header }}
+{{ content_top }}
+
+<!-- Хлебные крошки -->
+<div class="bread-crumbs">
+  <div class="container">
+      <ul>
+{% for breadcrumb in breadcrumbs %}
+    {% if loop.last %}
+        <li class="active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% else %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endif %}
+{% endfor %}
+      </ul>
+  </div>
+</div>
+
+<!-- Новости -->
+<div class="news">
+    <div class="container">
+        <div class="news-title">{{ heading_title }}</div>
+        <div class="row">
+            {% if articles %}
+            {% for article in articles %}
+            <div class="col-xl-6 col-sm-12">
+                <div class="news-item">
+                    <a href="{{ article.href }}" class="news-item_img">
+                        <img src="{{ article.original }}" alt="{{ article.name }}">
+                    </a>
+                    <div class="news-item_title">{{ article.name }}</div>
+                    <p>{{ article.preview }}...</p>
+                    <a href="{{ article.href }}" class="read">Подробнее</a>
+                </div>
+            </div>
+            {% endfor  %}
+            {% else  %}
+            {{ text_empty }}
+            {% endif  %}
+        </div>
+    </div>
+</div>
+
+{{ content_bottom }}
+{{ subscription }}
+{{ footer }}

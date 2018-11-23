@@ -1,0 +1,189 @@
+
+<div class="basket_wrapp">
+    <div class="basket_strip">
+        <p id="cart-total"></p>
+        <a href="{{ checkout }}">{{ button_checkout }}</a>
+    </div>
+</div>
+
+<!-- Подвал -->
+<footer class="footer">
+  <div class="container">
+
+    <a class="footer-logo" href="{{ home }}">
+      <img src="catalog/view/theme/default/img/logo-footer.jpg" alt="logo">
+    </a>
+
+    <div class="footer-navbar">
+      <div class="navbar-title">Меню</div>
+
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ about }}">{{ text_about }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ special }}">{{ text_special }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ catalog }}">Каталог</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ newsblog }}">Новости</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ contact }}">{{ text_contact }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-nav-catalog">
+      <div class="navbar-title">{{ category_catalog_title }}</div>
+    {% if categories %}
+      <ul class="footer-nav">
+    {% for category in categories %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ category.href }}">{{ category.name }}</a>
+        </li>
+    {% endfor %}
+      </ul>
+    {% endif %}
+    </div>
+
+    <ul class="social">
+      <li><a href="{{ config_vk }}" target="_blank"></a></li>
+      <li><a href="{{ config_instagram }}" target="_blank"></a></li>
+      <li><a href="{{ config_youtube }}" target="_blank"></a></li>
+    </ul>
+
+    <div class="contacts fc">
+      <a href="{{ href_tel }}" class="tel">{{ telephone }}</a>
+      <a href="mailto:{{ email }}" class="email">{{ email }}</a>
+
+      <p>Разработка сайта</p>
+      <p><a rel="nofollow" href="http://www.j-web.pro/" target="_blank">J-web.pro</a></p>
+    </div>
+
+    <p>&copy; 2018{{ '2018' != 'now'|date('Y')? '-' ~ 'now'|date('Y'): '' }} «{{ config_name }}»</p>
+
+  </div>
+</footer>
+
+<!-- Форма регистрация -->
+<div id="form-reg" class="form-reg">
+  <div class="popup-title">Личный кабинет</div>
+  <p>Регистрация</p>
+
+  <form id="form-register">
+    <label for="email">Email:</label>
+    <input name="email" class="input_popup" type="text" placeholder="Email">
+
+    <label for="userPassword">Пароль:</label>
+    <input name="password" class="input_popup" id="userPassword" type="password" placeholder="Пароль:">
+
+    <label for="confirmPassword">Повторите пароль:</label>
+    <input name="confirm" class="input_popup" id="confirmPassword" type="password" placeholder="Повторите пароль:">
+
+    <input class="submit_popup" type="submit" value="Зарегистрироваться">
+  </form>
+</div>
+
+<!-- Форма вход -->
+<div id="form-entrance" class="form-entrance">
+  <div class="popup-title">Личный кабинет</div>
+  <p>Вход</p>
+
+  <form id="form-login-entrance">
+    <label for="email">Email:</label>
+    <input name="email" class="input_popup" type="email" placeholder="Email">
+
+    <label for="userPassword">Пароль:</label>
+    <input name="password" class="input_popup" id="userPassword" type="password" placeholder="Пароль:">
+
+    <input class="submit_popup" type="submit" value="Войти">
+  </form>
+  <div class="a">
+    <a class="popup" href="#form-reg">Регистрация</a>
+    <a class="popup" href="#form-forgotPassword">Забыли пароль</a>
+  </div>
+</div>
+
+<!-- Форма забыли пароль -->
+<div id="form-forgotPassword" class="form-forgotPassword">
+  <div class="popup-title">Личный кабинет</div>
+  <p>Забыли пароль</p>
+  <span>
+    Введите адрес электронной почты, который
+    Вы указывали при регистрации, и мы
+    отправим Вам письмо с информацией для
+    восстановления пароля
+  </span>
+
+  <form id="form-forgotten">
+    <label for="email">Email:</label>
+    <input name="email" class="input_popup" type="email" placeholder="Email">
+    <input class="submit_popup" type="submit" value="Войти">
+  </form>
+</div>
+
+<!-- Поиск -->
+<div id="form-search" class="form-search">
+  <div class="container">
+  <div class="popup-title">Поиск</div>
+    <div class="row no-gutters">
+      <div class="col-lg-11 col-10">
+        <input name="search" type="search" class="input-search_popup" placeholder="Что будем искать?">
+      </div>
+      <div class="col-lg-1 col-2">
+        <div class="submit-search_popup">
+          <img src="catalog/view/theme/default/img/search.png" alt="search">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Форма обратный звонок -->
+<div id="form-call" class="form-call">
+  <div class="popup-title">Обратный звонок</div>
+
+  <form id="form-callback">
+
+    <label for="text">Ваше имя:</label>
+    <input name="firstname" class="input_popup" type="text" placeholder="Ваше имя">
+
+    <label for="tel">Ваш телефон:</label>
+    <input name="telephone" class="input_popup phone-mask" type="tel" placeholder="Ваш телефон">
+
+    <input class="submit_popup" type="submit" value="Отправить">
+  </form>
+</div>
+
+<!-- Форма купить в 1 клик -->
+<div id="form-fastBuy" class="form-fastBuy">
+  <div class="popup-title">Купить в один клик</div>
+
+  <form id="form-buy-one-click">
+    <label for="name">Ваше имя:</label>
+    <input name="firstname" class="input_popup" id="name" type="text" placeholder="Ваше имя">
+
+    <label for="tel">Ваш телефон:</label>
+    <input name="telephone" class="input_popup phone-mask" id="tel" type="tel" placeholder="Ваш телефон">
+
+    <input name="product_id" type="hidden" value="">
+    <input class="submit_popup" type="submit" value="Отправить">
+  </form>
+</div>
+
+{% for script in scripts %}
+    <script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+    <script src="catalog/view/javascript/js/fotorama.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/js/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/js/jquery.magnific-popup.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/js/slick.min.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/js/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/js/script.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/sp.js" type="text/javascript"></script>
+</body></html>
