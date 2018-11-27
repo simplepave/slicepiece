@@ -21,14 +21,9 @@
 
 <!-- Корзина -->
 <div class="cart">
-    <div id="common-success" class="container">
+    <div class="container">
         <div class="cart-title">{{ heading_title }}</div>
-        {{ text_message }}
-        <div class="buttons">
-            <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
-        </div>
-    </div>
-</div>
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+    {% endif %}
 
-{{ content_bottom }}
-{{ footer }}

@@ -20,8 +20,7 @@ class ControllerMailBuyOneClick extends Controller {
             ];
 
             if ($sp_valid->status) {
-                $fields = $sp_valid->get_fields();
-                $fields = $fields['all'];
+                $fields = $sp_valid->get_fields('all');
 
                 $data['firstname'] = 'Имя: ' . $fields['firstname'];
                 $data['telephone'] = 'Tel: ' . $fields['telephone'];

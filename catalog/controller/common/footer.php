@@ -43,7 +43,7 @@ class ControllerCommonFooter extends Controller {
         $data['telephone'] = $this->config->get('config_telephone');
         $data['href_tel'] = href_tel($this->config->get('config_telephone'));
         $data['email'] = $this->config->get('config_email');
-        $data['checkout'] = $this->url->link('checkout/checkout', '', true);
+        $data['checkout'] = $this->url->link('checkout/simplecheckout', '', true);
         $data['catalog'] = $this->url->link('product/category', 'path=59');
         $data['config_name'] = $this->config->get('config_name');
         $data['config_vk'] = $this->config->get('config_vk');
